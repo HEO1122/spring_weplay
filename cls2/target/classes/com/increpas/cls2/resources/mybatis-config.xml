@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+	
+<configuration>
+	<!-- myBatis 활동방식 설정 -->
+	<settings>
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+	<!-- 
+	세팅 속성 설명
+	cacheEnabled : 같은 질의명령일 경우 캐쉬기능 사용여부를 결정하는 속성
+					기본값은 true
+	useGeneratedKeys : 생성키에 대한 jdbc 지원을 허용
+						드라이버마다 조금씩 다르게 작동한다.
+	defaultExecutoType : 디폴트 실행자 설정
+						REUSE : PreparedStatement 를 재사용
+						SIMPLE : 특별히 하는 것이 없다.
+						BATCH : 구문은 재사용하고 수정을 배치 처리
+	-->
+	
+	<!-- 마이바티스에서 사용할 자바 타입의 별칭을 선언하는 부분 -->
+	<typeAliases>
+		<typeAlias alias="sVO" type="com.increpas.cls2.vo.SurveyVO"/>
+	</typeAliases>
+	<!-- 
+		마이바티스에서 자바의 클래스 타입을 사용할 경우에는
+		전체 경로를 사용하는것이 원칙이다.
+		
+		예]
+			String 의 경우
+			<typeAlias alias="string" type="java.lang.String"/>
+			로 별칭을 만들고 사용해야 한다.
+			
+			만들지 않을 경우에는
+			질의명령 xml
+				resultType		: 반환해주는 타입
+				parameterType	: 전달받은 데이터 타입
+			두가지의 타입을 
+				resultType="java.lang.String"
+			로 사용해야 하는데
+			별칭을 부여한 경우에는 
+				resultType="string"
+	 -->
+	 <mappers>
+	 	<mapper resource="com/increpas/cls2/sql/SurveySQL.xml"/>
+	 </mappers>
+</configuration>
